@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test";
-import { DEFAULT_LOCALE, isRtl, normalizeLocale, resolveLocale, SUPPORTED_LOCALES } from "../src/index";
+import { COMMON_MESSAGES, DEFAULT_LOCALE, isRtl, localeCookie, normalizeLocale, resolveLocale, SUPPORTED_LOCALES } from "../src/index";
 
 test("exposes exactly the KmerHosting phase-one locales", () => {
   expect(SUPPORTED_LOCALES).toHaveLength(20);
@@ -18,4 +18,13 @@ test("marks the three RTL locales", () => {
   expect(isRtl("fa")).toBe(true);
   expect(isRtl("ur")).toBe(true);
   expect(isRtl("fr")).toBe(false);
+});
+
+test("keeps cookie and shared catalogue contracts stable", () => {
+  expect(localeCookie("fr", ".kmerhosting.com")).toContain("kh_locale=fr");
+  expect(localeCookie("fr", ".kmerhosting.com")).toContain("Domain=.kmerhosting.com");
+  for (const locale of SUPPORTED_LOCALES) {
+    expect(COMMON_MESSAGES[locale].signIn.length).toBeGreaterThan(0);
+    expect(COMMON_MESSAGES[locale].language.length).toBeGreaterThan(0);
+  }
 });
