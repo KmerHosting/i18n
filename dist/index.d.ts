@@ -13,3 +13,5 @@ export declare function normalizeLocale(value: unknown): KmerLocale | null;
 export declare function resolveLocale(...candidates: unknown[]): KmerLocale;
 export declare function isRtl(locale: unknown): boolean;
 export declare function localeCookie(locale: KmerLocale, domain?: string): string;
+export { COMMON_MESSAGES } from "./messages.js";
+export type { CommonMessages } from "./messages.js";

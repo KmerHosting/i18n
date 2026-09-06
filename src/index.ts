@@ -66,3 +66,6 @@ export function localeCookie(locale: KmerLocale, domain?: string) {
   const scope = domain ? `; Domain=${domain}` : "";
   return `${LOCALE_COOKIE}=${encodeURIComponent(locale)}; Path=/; Max-Age=31536000; SameSite=Lax; Secure${scope}`;
 }
+
+export { COMMON_MESSAGES } from "./messages.js";
+export type { CommonMessages } from "./messages.js";
